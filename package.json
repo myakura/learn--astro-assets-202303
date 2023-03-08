@@ -1,0 +1,10 @@
+{
+  "name": "learn--astro-assets-202303",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Masataka Yakura",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
