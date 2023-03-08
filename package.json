@@ -5,7 +5,11 @@
   "private": true,
   "author": "Masataka Yakura",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "astro": "^2.1.0"
