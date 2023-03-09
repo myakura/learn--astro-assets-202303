@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../components/Layout.astro';
 import image from '../assets/evgeni-tcherkasski-BfBhwJ4qafo-unsplash.jpg';
 
@@ -32,6 +33,24 @@ const height = Math.trunc((image.height / image.width) * width);
 
 	<figure>
 		<img src={image.src} width={width} height={height} />
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({width}×{height})
+		</figcaption>
+	</figure>
+
+	<h2>Image component</h2>
+
+	<figure>
+		<Image src={image.src} width={image.width} height={image.height} alt="" />
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({image.width}×{image.height})
+		</figcaption>
+	</figure>
+
+	<h2>Image component with custom dimensions set</h2>
+
+	<figure>
+		<Image src={image.src} width={width} height={height} alt="" />
 		<figcaption>
 			<a href={url}>Photo by {credit}</a> ({width}×{height})
 		</figcaption>
