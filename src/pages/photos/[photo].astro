@@ -1,4 +1,6 @@
 ---
+import { getImage } from 'astro:assets';
+
 import Layout from '../../components/Layout.astro';
 
 import photos from '../../data/photos.json';
@@ -20,17 +22,13 @@ export async function getStaticPaths() {
 
 const { file, credit, url } = Astro.props;
 
-const image = await import(`../../assets/${file}`);
-
-const { src, width: origWidth, height: origHeight } = image;
-const width = 800;
-const height = Math.trunc((origHeight / origWidth) * width);
+const image = await getImage({ src: `../../assets/${file}` });
 
 const title = `Photo by ${credit}`;
 ---
 
 <Layout name={title}>
 	<figure>
-		<img src={src} width={width} height={height} alt="" />
+		<img src={image.src} width={image.width} height={image.height} />
 	</figure>
 </Layout>
