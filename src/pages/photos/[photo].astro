@@ -22,13 +22,29 @@ export async function getStaticPaths() {
 
 const { file, credit, url } = Astro.props;
 
-const image = await getImage({ src: `../../assets/${file}` });
+// const image = await getImage({ src: `../../assets/${file}` });
 
 const title = `Photo by ${credit}`;
 ---
 
 <Layout name={title}>
+	<!--
 	<figure>
 		<img src={image.src} width={image.width} height={image.height} />
 	</figure>
+	-->
+	<dl>
+		<div>
+			<dt>file</dt>
+			<dd>{file}</dd>
+		</div>
+		<div>
+			<dt>credit</dt>
+			<dd>{credit}</dd>
+		</div>
+		<div>
+			<dt>url</dt>
+			<dd>{url}</dd>
+		</div>
+	</dl>
 </Layout>
