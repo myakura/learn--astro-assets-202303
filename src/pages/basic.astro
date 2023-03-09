@@ -1,0 +1,29 @@
+---
+import Layout from '../components/Layout.astro';
+import image from '../assets/evgeni-tcherkasski-BfBhwJ4qafo-unsplash.jpg';
+
+const credit = 'Evgeni Tcherkasski';
+const url = 'https://unsplash.com/photos/BfBhwJ4qafo';
+
+const name = 'Astro Assets example';
+
+console.log(image);
+---
+
+<Layout name={name}>
+	<h2>Basic — just using <code>image.src</code></h2>
+
+	<figure>
+		<img src={image.src} />
+		<figcaption><a href={url}>Photo by {credit}</a></figcaption>
+	</figure>
+
+	<h2>Basic — with dimension attributes</h2>
+
+	<figure>
+		<img src={image.src} width={image.width} height={image.height} />
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({image.width}×{image.height})
+		</figcaption>
+	</figure>
+</Layout>
