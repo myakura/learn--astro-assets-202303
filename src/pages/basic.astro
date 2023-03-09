@@ -6,6 +6,9 @@ const credit = 'Evgeni Tcherkasski';
 const url = 'https://unsplash.com/photos/BfBhwJ4qafo';
 
 const name = 'Astro Assets example';
+
+const width = 600;
+const height = Math.trunc((image.height / image.width) * width);
 ---
 
 <Layout name={name}>
@@ -16,12 +19,21 @@ const name = 'Astro Assets example';
 		<figcaption><a href={url}>Photo by {credit}</a></figcaption>
 	</figure>
 
-	<h2>Basic — with dimension attributes</h2>
+	<h2>Basic — with dimension attributes set to its natural dimension</h2>
 
 	<figure>
 		<img src={image.src} width={image.width} height={image.height} />
 		<figcaption>
 			<a href={url}>Photo by {credit}</a> ({image.width}×{image.height})
+		</figcaption>
+	</figure>
+
+	<h2>Basic — with custom dimension</h2>
+
+	<figure>
+		<img src={image.src} width={width} height={height} />
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({width}×{height})
 		</figcaption>
 	</figure>
 </Layout>
