@@ -2,10 +2,9 @@
 import { getImage } from 'astro:assets';
 import Layout from '../../components/Layout.astro';
 import photos from '../../data/photos.json';
-const assets = await Astro.glob('../../assets/**/*.jpg');
-console.log(assets);
 
 export async function getStaticPaths() {
+	const assets = await Astro.glob('../../assets/**/*.jpg');
 	return photos.map((item) => {
 		return {
 			params: {
@@ -15,7 +14,8 @@ export async function getStaticPaths() {
 				file: item.file,
 				credit: item.credit,
 				url: item.url,
-				image: assets.find((image) => image.src.includes(item.file)),
+				image: assets.find((asset) => asset.default.src.includes(item.file))
+					.default,
 			},
 		};
 	});
@@ -24,17 +24,16 @@ export async function getStaticPaths() {
 const { file, credit, url, image } = Astro.props;
 
 // const image = await getImage({ src: `../../assets/${file}` });
+// console.log(image);
 
 const title = `Photo by ${credit}`;
-console.log(image);
 ---
 
 <Layout name={title}>
-	<!--
 	<figure>
 		<img src={image.src} width={image.width} height={image.height} />
 	</figure>
-	-->
+
 	<dl>
 		<div>
 			<dt>file</dt>
