@@ -1,5 +1,4 @@
 ---
-import { getImage } from 'astro:assets';
 import Layout from '../../components/Layout.astro';
 import photos from '../../data/photos.json';
 
@@ -11,7 +10,6 @@ export async function getStaticPaths() {
 				photo: item.url.slice(28), // stripping `https://unsplash.com/photos/`
 			},
 			props: {
-				file: item.file,
 				credit: item.credit,
 				url: item.url,
 				image: assets.find((asset) => asset.default.src.includes(item.file))
@@ -21,31 +19,25 @@ export async function getStaticPaths() {
 	});
 }
 
-const { file, credit, url, image } = Astro.props;
+const { credit, url, image } = Astro.props;
 
-// const image = await getImage({ src: `../../assets/${file}` });
-// console.log(image);
+const width = 1000;
+const height = Math.trunc((image.height / image.width) * width);
 
 const title = `Photo by ${credit}`;
 ---
 
 <Layout name={title}>
 	<figure>
-		<img src={image.src} width={image.width} height={image.height} />
+		<img src={image.src} width={width} height={height} />
 	</figure>
 
-	<dl>
-		<div>
-			<dt>file</dt>
-			<dd>{file}</dd>
-		</div>
-		<div>
-			<dt>credit</dt>
-			<dd>{credit}</dd>
-		</div>
-		<div>
-			<dt>url</dt>
-			<dd>{url}</dd>
-		</div>
-	</dl>
+	<p><a href={url}>see the photo on Unsplash</a></p>
 </Layout>
+
+<style>
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+</style>
