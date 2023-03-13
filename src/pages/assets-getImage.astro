@@ -1,0 +1,62 @@
+---
+import { getImage } from 'astro:assets';
+import Layout from '../components/Layout.astro';
+import image from '../assets/evgeni-tcherkasski-BfBhwJ4qafo-unsplash.jpg';
+
+const credit = 'Evgeni Tcherkasski';
+const url = 'https://unsplash.com/photos/BfBhwJ4qafo';
+
+const name = 'Astro Assets example: getImage() method';
+
+const width = 600;
+const height = Math.trunc((image.height / image.width) * width);
+
+const background = await getImage({ src: image });
+console.log('background', background);
+const resizedBackground = await getImage({
+	src: image,
+	width: width,
+	height: height,
+});
+console.log('resized', resizedBackground);
+---
+
+<Layout name={name}>
+	<h2>Using getImage() in the background</h2>
+
+	<figure>
+		<div
+			class="image"
+			style={`--image-url: url(${background.src}); width: ${background.attributes.width}px; height: ${background.attributes.height}px;`}
+		>
+		</div>
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({background.attributes.width}×{
+				background.attributes.height
+			})
+		</figcaption>
+	</figure>
+
+	<figure>
+		<div
+			class="image"
+			style={`--image-url: url(${resizedBackground.src}); width: ${resizedBackground.options.width}px; height: ${resizedBackground.options.height}px;`}
+		>
+		</div>
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({resizedBackground.options.width}×{
+				resizedBackground.options.height
+			})
+		</figcaption>
+	</figure>
+</Layout>
+
+<style>
+	.image {
+		max-width: 100%;
+		height: auto;
+		background-image: var(--image-url);
+		background-repeat: no-repeat;
+		background-size: auto;
+	}
+</style>
