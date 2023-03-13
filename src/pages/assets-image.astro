@@ -1,37 +1,31 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../components/Layout.astro';
 import image from '../assets/evgeni-tcherkasski-BfBhwJ4qafo-unsplash.jpg';
 
 const credit = 'Evgeni Tcherkasski';
 const url = 'https://unsplash.com/photos/BfBhwJ4qafo';
 
-const name = 'Astro Assets example: assets import';
+const name = 'Astro Assets example: Image component';
 
 const width = 600;
 const height = Math.trunc((image.height / image.width) * width);
 ---
 
 <Layout name={name}>
-	<h2>Basic — just using <code>image.src</code></h2>
+	<h2>Image component</h2>
 
 	<figure>
-		<img src={image.src} />
-		<figcaption><a href={url}>Photo by {credit}</a></figcaption>
-	</figure>
-
-	<h2>Basic — with dimension attributes set to its natural dimension</h2>
-
-	<figure>
-		<img src={image.src} width={image.width} height={image.height} />
+		<Image src={image.src} width={image.width} height={image.height} alt="" />
 		<figcaption>
 			<a href={url}>Photo by {credit}</a> ({image.width}×{image.height})
 		</figcaption>
 	</figure>
 
-	<h2>Basic — with custom dimension</h2>
+	<h2>Image component with custom dimensions set</h2>
 
 	<figure>
-		<img src={image.src} width={width} height={height} />
+		<Image src={image.src} width={width} height={height} alt="" />
 		<figcaption>
 			<a href={url}>Photo by {credit}</a> ({width}×{height})
 		</figcaption>
