@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import image from '../assets/evgeni-tcherkasski-BfBhwJ4qafo-unsplash.jpg';
+import image2 from '~/assets/evgeni-tcherkasski-BfBhwJ4qafo-unsplash.jpg';
 
 const credit = 'Evgeni Tcherkasski';
 const url = 'https://unsplash.com/photos/BfBhwJ4qafo';
@@ -32,6 +33,15 @@ const height = Math.trunc((image.height / image.width) * width);
 
 	<figure>
 		<img src={image.src} width={width} height={height} />
+		<figcaption>
+			<a href={url}>Photo by {credit}</a> ({width}×{height})
+		</figcaption>
+	</figure>
+
+	<h2>Basic — Using `~/assets/` alias</h2>
+
+	<figure>
+		<img src={image2.src} width={width} height={height} />
 		<figcaption>
 			<a href={url}>Photo by {credit}</a> ({width}×{height})
 		</figcaption>
